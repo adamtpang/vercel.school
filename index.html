@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vercel.school — Learn Vercel. By shipping.</title>
+<meta name="description" content="A working classroom run by Adam Pang — 43 live products deployed on Vercel from Network School, APAC. No slides. Every lesson ends with something live on the internet.">
+<meta property="og:title" content="vercel.school — Learn Vercel. By shipping.">
+<meta property="og:description" content="43 live products. 65 domains. One rule: every lesson ends with something live on the internet.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vercel.school/">
+<link rel="canonical" href="https://vercel.school/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%96%B2%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --board:#10151a;       /* deep slate chalkboard */
+    --board2:#141a21;
+    --chalk:#e9edf2;       /* chalk white */
+    --dust:#9aa6b2;        /* chalk dust */
+    --faint:#5c6873;
+    --line:#232c35;
+    --accent:#f2d478;      /* soft chalk yellow */
+    --accent-dim:#3a3524;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,sans-serif;
+    --hand:'Caveat',cursive;
+  }
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--board);color:var(--chalk);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1000px 520px at 85% -5%, #161d25 0%, transparent 60%);}
+  .wrap{max-width:880px;margin:0 auto;padding:72px 24px 80px}
+  a{color:inherit}
+  .mono{font-family:var(--mono)}
+
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"▲";font-size:11px}
+  h1{font-size:clamp(40px,8vw,76px);line-height:1.0;letter-spacing:-.03em;font-weight:700;margin:22px 0 0;text-wrap:balance}
+  h1 .under{position:relative;white-space:nowrap}
+  h1 .under svg{position:absolute;left:0;right:0;bottom:-10px;width:100%;height:14px}
+  .lede{margin-top:26px;font-size:clamp(16px,2.3vw,19px);color:var(--dust);max-width:56ch;text-wrap:pretty}
+  .lede b{color:var(--chalk);font-weight:600}
+  .hand{font-family:var(--hand);color:var(--accent);font-size:1.35em;letter-spacing:.01em}
+
+  .proof{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+  .stat{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--board2)}
+  .stat b{font-family:var(--mono);font-size:18px;color:var(--chalk);font-variant-numeric:tabular-nums}
+  .stat span{display:block;font-size:11.5px;color:var(--faint);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+  h2.sec{margin:72px 0 8px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+  .secnote{font-family:var(--hand);color:var(--accent);font-size:22px;margin-bottom:22px}
+
+  .lesson{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+  .lesson:last-of-type{border-bottom:1px solid var(--line)}
+  .num{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:4px}
+  .lesson h3{font-size:20px;font-weight:650;letter-spacing:-.01em;text-wrap:balance}
+  .lesson p{color:var(--dust);font-size:15px;margin-top:6px;max-width:58ch}
+  .lesson .proof-link{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12.5px;color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent)}
+  .lesson .proof-link:hover{border-bottom-style:solid}
+
+  .cta{margin-top:72px;border:1px solid var(--line);border-radius:14px;padding:30px;background:var(--board2)}
+  .cta h2{font-size:clamp(22px,3.5vw,28px);letter-spacing:-.02em;text-wrap:balance}
+  .cta p{color:var(--dust);margin-top:10px;max-width:56ch}
+  .cta .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .btn{display:inline-block;padding:12px 22px;border-radius:9px;font-size:14.5px;font-weight:600;text-decoration:none}
+  .btn.primary{background:var(--chalk);color:var(--board)}
+  .btn.primary:hover{background:#fff}
+  .btn.ghost{border:1px solid var(--line);color:var(--chalk)}
+  .btn.ghost:hover{border-color:var(--dust)}
+
+  footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--faint);font-size:12.5px;font-family:var(--mono)}
+  footer a{color:var(--dust);text-decoration:none}
+  footer a:hover{color:var(--accent)}
+  @media(max-width:560px){.lesson{grid-template-columns:1fr}.num{padding-top:0}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="eyebrow">The unofficial school of shipping</div>
+  <h1>Learn Vercel.<br><span class="under">By shipping.<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M4 9 C60 3, 150 12, 296 6" fill="none" stroke="#f2d478" stroke-width="3" stroke-linecap="round" opacity=".85"/></svg></span></h1>
+  <p class="lede">vercel.school is a working classroom run by <b>Adam Pang</b> — built from <b>Network School, APAC</b>. No slides, no certificates, no lorem ipsum. <span class="hand">Every lesson ends with something live on the internet.</span></p>
+
+  <div class="proof">
+    <div class="stat"><b>43</b><span>live products</span></div>
+    <div class="stat"><b>65</b><span>domains managed</span></div>
+    <div class="stat"><b>APAC</b><span>shipping timezone</span></div>
+    <div class="stat"><b>▲ 100%</b><span>deployed on vercel</span></div>
+  </div>
+
+  <h2 class="sec">Curriculum</h2>
+  <div class="secnote">every lesson is a shipped artifact, not a slide →</div>
+
+  <div class="lesson">
+    <div class="num">Lesson 01</div>
+    <div>
+      <h3>Ship in an afternoon</h3>
+      <p>Idea → repo → <span class="mono">vercel deploy --prod</span>. The first lesson is the whole loop, because the loop is the skill. Everything else is refinement.</p>
+      <a class="proof-link" href="https://ships-pi.vercel.app" target="_blank" rel="noopener">proof: 43 tools, one directory ↗</a>
+    </div>
+  </div>
+  <div class="lesson">
+    <div class="num">Lesson 02</div>
+    <div>
+      <h3>Domains are distribution</h3>
+      <p>Apex vs www, 308s, DNS that doesn't rot. How to run a 65-domain estate without an ops team — and what dead domains quietly cost you.</p>
+      <a class="proof-link" href="https://interneta.world" target="_blank" rel="noopener">proof: a federation of live domains ↗</a>
+    </div>
+  </div>
+  <div class="lesson">
+    <div class="num">Lesson 03</div>
+    <div>
+      <h3>AI is your build crew</h3>
+      <p>Claude, v0, Lovable — orchestrate them like a crew, review like an editor, ship like a founder. Twenty-four apps went from prompt to production this way.</p>
+      <a class="proof-link" href="https://moneymeta.fun" target="_blank" rel="noopener">proof: built with the crew ↗</a>
+    </div>
+  </div>
+  <div class="lesson">
+    <div class="num">Lesson 04</div>
+    <div>
+      <h3>Preview deploys are the classroom</h3>
+      <p>Every push gets a URL. Feedback on real links beats feedback on mockups, every single time. Demos are the homework.</p>
+      <a class="proof-link" href="https://vitals.run" target="_blank" rel="noopener">proof: an operating dashboard, live ↗</a>
+    </div>
+  </div>
+  <div class="lesson">
+    <div class="num">Lesson 05</div>
+    <div>
+      <h3>The edge is close to your users</h3>
+      <p>Shipping from APAC, for APAC — Network School, Malaysia. The next billion users aren't in us-east-1, and neither am I.</p>
+      <a class="proof-link" href="https://townhall.town" target="_blank" rel="noopener">proof: civic tools for a network school ↗</a>
+    </div>
+  </div>
+  <div class="lesson">
+    <div class="num">Lesson 06</div>
+    <div>
+      <h3>Ship or it didn't happen</h3>
+      <p>A portfolio is proof-of-work. Not a resume, not a deck — live URLs your users can click. This site is its own final exam.</p>
+      <a class="proof-link" href="https://adampang.com" target="_blank" rel="noopener">proof: the teacher ↗</a>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>Want this taught at your team?</h2>
+    <p>I onboard teams onto Vercel the way a forward-deployed engineer would — embedded, hands-on, shipping from day one. Or just come watch the classroom work in public.</p>
+    <div class="row">
+      <a class="btn primary" href="mailto:adamtpang@gmail.com?subject=vercel.school">Email the teacher</a>
+      <a class="btn ghost" href="https://x.com/adamtpang" target="_blank" rel="noopener">Follow along on X</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>An independent fan project — not affiliated with Vercel Inc.</span>
+    <span>part of <a href="https://companyuniversity.vercel.app" target="_blank" rel="noopener">company.university</a></span>
+  </footer>
+</main>
+</body>
+</html>
