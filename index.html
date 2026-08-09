@@ -74,6 +74,22 @@
   footer a{color:var(--dust);text-decoration:none}
   footer a:hover{color:var(--accent)}
   @media(max-width:560px){.lesson{grid-template-columns:1fr}.num{padding-top:0}}
+
+  .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:22px}
+  .product{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--board2);text-decoration:none;display:block;transition:border-color .15s}
+  .product:hover{border-color:var(--accent)}
+  .product h4{font-size:16px;font-weight:650;letter-spacing:-.01em}
+  .product p{color:var(--dust);font-size:13px;margin-top:6px;line-height:1.5}
+  .product span{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.04em}
+
+  .subscribe{margin-top:72px;border:1px solid var(--line);border-radius:14px;padding:30px;background:var(--board2)}
+  .subscribe h2{font-size:clamp(20px,3vw,24px);letter-spacing:-.02em;text-wrap:balance}
+  .subscribe p{color:var(--dust);margin-top:8px;max-width:52ch;font-size:14px}
+  .subscribe form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .subscribe input{flex:1;min-width:220px;padding:12px 14px;border-radius:9px;border:1px solid var(--line);background:var(--board);color:var(--chalk);font-size:14.5px;font-family:var(--sans)}
+  .subscribe input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .subscribe .msg{margin-top:12px;font-size:13px;color:var(--dust);font-family:var(--mono)}
+  .subscribe .msg.ok{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -141,6 +157,32 @@
     </div>
   </div>
 
+  <h2 class="sec">Try the work</h2>
+  <div class="secnote">every product below is live, free to try, built the same way →</div>
+  <div class="products">
+    <a class="product" href="https://beware.dog" target="_blank" rel="noopener"><h4>beware.dog</h4><p>AI security for small business: the spoofed email, the cloned voice.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://moneymeta.fun" target="_blank" rel="noopener"><h4>moneymeta.fun</h4><p>The best money deck to play in life, ranked S to D from BLS data.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://sprite.email" target="_blank" rel="noopener"><h4>sprite.email</h4><p>One inbox for every Gmail you own.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://skill.supply" target="_blank" rel="noopener"><h4>skill.supply</h4><p>Writes your ideal JD, then scores real openings against it.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://darktalent.tech" target="_blank" rel="noopener"><h4>darktalent.tech</h4><p>Five scored candidates per job description, matched to one role.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://deathmoney.fyi" target="_blank" rel="noopener"><h4>deathmoney.fyi</h4><p>Your freedom number from real statements, not vibes.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://youchop.app" target="_blank" rel="noopener"><h4>youchop.app</h4><p>AI chapters and timestamps for any YouTube video.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://sellsniper.com" target="_blank" rel="noopener"><h4>sellsniper.com</h4><p>The ten communities where your exact buyers already gather.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://anchormarianas.com" target="_blank" rel="noopener"><h4>anchormarianas.com</h4><p>Free AI opportunity audit for SMBs, fee credits toward the build.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://summon.guide" target="_blank" rel="noopener"><h4>summon.guide</h4><p>Mentor-grade counsel on demand from history's greatest guides.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://everybot.fun" target="_blank" rel="noopener"><h4>everybot.fun</h4><p>The reservation list for a household humanoid robot.</p><span>Try free ↗</span></a>
+  </div>
+
+  <div class="subscribe">
+    <h2>One email when something new ships</h2>
+    <p>No noise, no per-product spam. One list across everything I build, so you hear about a new lesson or product once, not never and not fifty times.</p>
+    <form id="subForm">
+      <input type="email" id="subEmail" placeholder="you@company.com" required>
+      <button class="btn primary" type="submit">Subscribe</button>
+    </form>
+    <div class="msg" id="subMsg"></div>
+  </div>
+
   <div class="cta">
     <h2>Want this taught at your team?</h2>
     <p>I onboard teams onto Vercel the way a forward-deployed engineer would — embedded, hands-on, shipping from day one. Or just come watch the classroom work in public.</p>
@@ -155,5 +197,33 @@
     <span>part of <a href="https://companyuniversity.vercel.app" target="_blank" rel="noopener">company.university</a></span>
   </footer>
 </main>
+<script>
+  var f = document.getElementById('subForm');
+  if (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('subEmail').value;
+      var msg = document.getElementById('subMsg');
+      msg.className = 'msg';
+      msg.textContent = 'Sending...';
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      }).then(function (r) {
+        if (r.ok) {
+          msg.className = 'msg ok';
+          msg.textContent = "You're on the list.";
+          f.reset();
+        } else {
+          msg.textContent = 'Something broke. Try again?';
+        }
+      }).catch(function () {
+        msg.textContent = 'Something broke. Try again?';
+      });
+    });
+  }
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
