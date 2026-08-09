@@ -1,0 +1,15 @@
+# repos.yaml v0 — see github.com/adamtpang/repo-connect
+repo: vercel.school
+is: A working classroom by Adam Pang teaching Vercel by shipping — 43 live products, 65 domains, no slides.
+url: https://vercel.school
+
+provides:
+  - id: shipped-domains-inventory
+    what: the live list of which Vercel domains are actually shipping (the keep-list for any dead-domain audit)
+    at: index.html
+
+stack: [static-html]
+
+kin:
+  - repo: deathmoney.fyi
+    why: deathmoney.fyi's ASAP checklist has a Vercel domain audit (kill unused domains, ~$60/mo waste); vercel.school's shipped-product list is the ground-truth keep-list for that audit, and vercel.school itself teaches "what dead domains quietly cost you" as one of its lessons.
