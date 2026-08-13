@@ -2,6 +2,7 @@
   "name": "vercel.school",
   "private": true,
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4"
+    "@neondatabase/serverless": "^0.10.4",
+    "stripe": "^17.4.0"
   }
 }
