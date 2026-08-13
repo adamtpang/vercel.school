@@ -1,0 +1,18 @@
+# vercel.school
+
+> An independent, unofficial classroom on shipping with Vercel, run by Adam Pang: no slides, every lesson ends with something live on the internet.
+
+vercel.school is a single-page site run by Adam Pang from Network School, APAC. It is not affiliated with Vercel Inc. The curriculum is six lessons, each a shipped artifact rather than a slide: shipping in an afternoon (idea to `vercel deploy --prod`), domains as distribution (running a 65-domain estate), using AI (Claude, v0, Lovable) as a build crew, preview deploys as the real classroom, shipping from the edge near APAC users, and "ship or it didn't happen" as the closing rule. Each lesson links to a real proof project instead of a claim.
+
+Below the curriculum, the page is a hub linking out to Adam's other live, free-to-try products (beware.dog, moneymeta.fun, sprite.email, skill.supply, darktalent.tech, deathmoney.fyi, youchop.app, sellsniper.com, anchormarianas.com, summon.guide, everybot.fun), each with its own one-line description. There is a single-list email subscribe form (POST to /api/subscribe) for updates across everything Adam ships, and a contact CTA for teams that want Vercel onboarding taught hands-on.
+
+## Key links
+- [Home](https://vercel.school/): the full curriculum, the "try the work" product hub, and the subscribe form.
+- [Ship in an afternoon proof](https://ships-pi.vercel.app): 43 tools built from one directory.
+- [Domains are distribution proof](https://interneta.world): a federation of live domains.
+- [AI as build crew proof](https://moneymeta.fun): a product built with Claude/v0/Lovable as a crew.
+
+## About
+- Run by Adam Pang (Anchor Marianas LLC), part of adam.inc, the internet portfolio.
+- Not affiliated with, endorsed by, or sponsored by Vercel Inc.
+- Builder: https://adampang.com
