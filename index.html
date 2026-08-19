@@ -16,12 +16,19 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Person",
+      "@id": "https://vercel.school/#person",
+      "name": "Adam Pang",
+      "url": "https://adampang.com",
+      "sameAs": ["https://x.com/adamtpang", "https://adampang.com"]
+    },
+    {
       "@type": "Organization",
       "@id": "https://vercel.school/#organization",
       "name": "vercel.school",
       "url": "https://vercel.school/",
       "description": "An independent, unofficial classroom on shipping with Vercel, run by Adam Pang. Not affiliated with Vercel Inc.",
-      "founder": { "@type": "Person", "name": "Adam Pang", "url": "https://adampang.com" },
+      "founder": { "@id": "https://vercel.school/#person" },
       "sameAs": ["https://x.com/adamtpang", "https://adampang.com"]
     },
     {
@@ -31,6 +38,7 @@
       "url": "https://vercel.school/",
       "description": "A working classroom run by Adam Pang, 43 live products deployed on Vercel from Network School, APAC. Every lesson ends with something live on the internet.",
       "publisher": { "@id": "https://vercel.school/#organization" },
+      "author": { "@id": "https://vercel.school/#person" },
       "inLanguage": "en"
     }
   ]
