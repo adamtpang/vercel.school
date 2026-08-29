@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>vercel.school — Learn Vercel. By shipping.</title>
-<meta name="description" content="A working classroom run by Adam Pang — 43 live products deployed on Vercel from Network School, APAC. No slides. Every lesson ends with something live on the internet.">
+<meta name="description" content="An independent working classroom by Adam Pang with six shipping lessons and 11 free-to-try products. Learn Vercel by putting real work online.">
 <meta property="og:title" content="vercel.school — Learn Vercel. By shipping.">
-<meta property="og:description" content="43 live products. 65 domains. One rule: every lesson ends with something live on the internet.">
+<meta property="og:description" content="Six shipping lessons, 11 free-to-try products, and one rule: every lesson ends with something live on the internet.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vercel.school/">
 <link rel="canonical" href="https://vercel.school/">
@@ -36,7 +36,7 @@
       "@id": "https://vercel.school/#website",
       "name": "vercel.school",
       "url": "https://vercel.school/",
-      "description": "A working classroom run by Adam Pang, 43 live products deployed on Vercel from Network School, APAC. Every lesson ends with something live on the internet.",
+      "description": "An independent working classroom run by Adam Pang with six shipping lessons and 11 free-to-try products. Every lesson ends with something live on the internet.",
       "publisher": { "@id": "https://vercel.school/#organization" },
       "author": { "@id": "https://vercel.school/#person" },
       "inLanguage": "en"
@@ -44,9 +44,6 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
   :root{
     --board:#10151a;       /* deep slate chalkboard */
@@ -59,13 +56,17 @@
     --accent-dim:#3a3524;
     --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,sans-serif;
-    --hand:'Caveat',cursive;
+    --hand:"Segoe Print","Bradley Hand",cursive;
   }
   *{box-sizing:border-box;margin:0}
   body{background:var(--board);color:var(--chalk);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
     background-image:radial-gradient(1000px 520px at 85% -5%, #161d25 0%, transparent 60%);}
   .wrap{max-width:880px;margin:0 auto;padding:72px 24px 80px}
   a{color:inherit}
+  a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .site-nav{display:flex;justify-content:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:42px;font-family:var(--mono);font-size:12.5px}
+  .site-nav a{color:var(--dust);text-decoration:none}
+  .site-nav a:hover{color:var(--accent)}
   .mono{font-family:var(--mono)}
 
   .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px}
@@ -84,6 +85,8 @@
 
   h2.sec{margin:72px 0 8px;font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
   .secnote{font-family:var(--hand);color:var(--accent);font-size:22px;margin-bottom:22px}
+  .plain-section{max-width:68ch}
+  .plain-section p{color:var(--dust);margin-top:14px}
 
   .lesson{display:grid;grid-template-columns:64px 1fr;gap:18px;padding:26px 0;border-top:1px solid var(--line)}
   .lesson:last-of-type{border-bottom:1px solid var(--line)}
@@ -111,32 +114,46 @@
   .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:22px}
   .product{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--board2);text-decoration:none;display:block;transition:border-color .15s}
   .product:hover{border-color:var(--accent)}
-  .product h4{font-size:16px;font-weight:650;letter-spacing:-.01em}
-  .product p{color:var(--dust);font-size:13px;margin-top:6px;line-height:1.5}
-  .product span{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.04em}
+  .product h3{font-size:16px;font-weight:650;letter-spacing:-.01em}
+  .product .product-copy{display:block;color:var(--dust);font-family:var(--sans);font-size:13px;margin-top:6px;line-height:1.5;letter-spacing:normal}
+  .product > span:not(.product-copy){display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.04em}
 
   .subscribe{margin-top:72px;border:1px solid var(--line);border-radius:14px;padding:30px;background:var(--board2)}
   .subscribe h2{font-size:clamp(20px,3vw,24px);letter-spacing:-.02em;text-wrap:balance}
   .subscribe p{color:var(--dust);margin-top:8px;max-width:52ch;font-size:14px}
   .subscribe form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .subscribe label{flex-basis:100%;font-family:var(--mono);font-size:12.5px;color:var(--chalk)}
   .subscribe input{flex:1;min-width:220px;padding:12px 14px;border-radius:9px;border:1px solid var(--line);background:var(--board);color:var(--chalk);font-size:14.5px;font-family:var(--sans)}
   .subscribe input:focus{outline:2px solid var(--accent);outline-offset:1px}
   .subscribe .msg{margin-top:12px;font-size:13px;color:var(--dust);font-family:var(--mono)}
   .subscribe .msg.ok{color:var(--accent)}
+  .form-note{font-size:12.5px!important}
+  .form-note a{color:var(--accent)}
 </style>
 </head>
 <body>
 <main class="wrap">
+  <nav class="site-nav" aria-label="Site information">
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/privacy">Privacy</a>
+  </nav>
   <div class="eyebrow">The unofficial school of shipping</div>
   <h1>Learn Vercel.<br><span class="under">By shipping.<svg viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M4 9 C60 3, 150 12, 296 6" fill="none" stroke="#f2d478" stroke-width="3" stroke-linecap="round" opacity=".85"/></svg></span></h1>
   <p class="lede">vercel.school is a working classroom run by <b>Adam Pang</b> — built from <b>Network School, APAC</b>. No slides, no certificates, no lorem ipsum. <span class="hand">Every lesson ends with something live on the internet.</span></p>
 
   <div class="proof">
-    <div class="stat"><b>43</b><span>live products</span></div>
-    <div class="stat"><b>65</b><span>domains managed</span></div>
+    <div class="stat"><b>6</b><span>shipping lessons</span></div>
+    <div class="stat"><b>11</b><span>featured products</span></div>
     <div class="stat"><b>APAC</b><span>shipping timezone</span></div>
-    <div class="stat"><b>▲ 100%</b><span>deployed on vercel</span></div>
+    <div class="stat"><b>▲</b><span>deployed on vercel</span></div>
   </div>
+
+  <section class="plain-section" aria-labelledby="what-this-is">
+    <h2 class="sec" id="what-this-is">What this is</h2>
+    <p>vercel.school is Adam Pang's independent proof-of-work classroom for people evaluating how he builds and ships on Vercel. The public curriculum explains six practical lessons, and every lesson links to a real deployed project that visitors can inspect themselves.</p>
+    <p>The classroom and product directory are free to browse, with no paid plan or course checkout. Teams that want hands-on Vercel onboarding can contact Adam to describe their needs and request a quote; everyone else can use the lessons and linked products without signing up.</p>
+  </section>
 
   <h2 class="sec">Curriculum</h2>
   <div class="secnote">every lesson is a shipped artifact, not a slide →</div>
@@ -145,15 +162,15 @@
     <div class="num">Lesson 01</div>
     <div>
       <h3>Ship in an afternoon</h3>
-      <p>Idea → repo → <span class="mono">vercel deploy --prod</span>. The first lesson is the whole loop, because the loop is the skill. Everything else is refinement.</p>
-      <a class="proof-link" href="https://ships-pi.vercel.app" target="_blank" rel="noopener">proof: 43 tools, one directory ↗</a>
+      <p>The first shipping lesson covers the complete loop from idea to repository to <span class="mono">vercel deploy --prod</span>. Practicing that loop matters more than polishing slides, because every later lesson improves a process that already puts working software online.</p>
+      <a class="proof-link" href="https://ships-pi.vercel.app" target="_blank" rel="noopener">proof: a live product directory ↗</a>
     </div>
   </div>
   <div class="lesson">
     <div class="num">Lesson 02</div>
     <div>
       <h3>Domains are distribution</h3>
-      <p>Apex vs www, 308s, DNS that doesn't rot. How to run a 65-domain estate without an ops team — and what dead domains quietly cost you.</p>
+      <p>The domains lesson explains apex and www records, permanent redirects, and DNS maintenance for a large portfolio. It treats each domain as a distribution decision and shows why unused registrations create recurring cost and operational confusion.</p>
       <a class="proof-link" href="https://interneta.world" target="_blank" rel="noopener">proof: a federation of live domains ↗</a>
     </div>
   </div>
@@ -161,7 +178,7 @@
     <div class="num">Lesson 03</div>
     <div>
       <h3>AI is your build crew</h3>
-      <p>Claude, v0, Lovable — orchestrate them like a crew, review like an editor, ship like a founder. Twenty-four apps went from prompt to production this way.</p>
+      <p>The AI build-crew lesson uses tools such as Claude, v0, and Lovable as collaborators while keeping human review in the loop. The goal is faster execution with editorial judgment, working links, and production verification.</p>
       <a class="proof-link" href="https://moneymeta.fun" target="_blank" rel="noopener">proof: built with the crew ↗</a>
     </div>
   </div>
@@ -169,7 +186,7 @@
     <div class="num">Lesson 04</div>
     <div>
       <h3>Preview deploys are the classroom</h3>
-      <p>Every push gets a URL. Feedback on real links beats feedback on mockups, every single time. Demos are the homework.</p>
+      <p>The preview-deploy lesson gives each proposed change a shareable URL before production. Reviewers can test the real interface instead of interpreting a mockup, so feedback arrives against working behavior and demos become concrete homework.</p>
       <a class="proof-link" href="https://vitals.run" target="_blank" rel="noopener">proof: an operating dashboard, live ↗</a>
     </div>
   </div>
@@ -177,7 +194,7 @@
     <div class="num">Lesson 05</div>
     <div>
       <h3>The edge is close to your users</h3>
-      <p>Shipping from APAC, for APAC — Network School, Malaysia. The next billion users aren't in us-east-1, and neither am I.</p>
+      <p>The edge lesson starts from Adam's APAC working context at Network School in Malaysia. It asks builders to consider where users actually live and to choose delivery infrastructure that keeps the experience close to them.</p>
       <a class="proof-link" href="https://townhall.town" target="_blank" rel="noopener">proof: civic tools for a network school ↗</a>
     </div>
   </div>
@@ -185,7 +202,7 @@
     <div class="num">Lesson 06</div>
     <div>
       <h3>Ship or it didn't happen</h3>
-      <p>A portfolio is proof-of-work. Not a resume, not a deck — live URLs your users can click. This site is its own final exam.</p>
+      <p>The final lesson treats a portfolio as proof-of-work rather than a résumé or slide deck. Public URLs let visitors inspect the result directly, and vercel.school serves as its own final exam by remaining deployed and usable.</p>
       <a class="proof-link" href="https://adampang.com" target="_blank" rel="noopener">proof: the teacher ↗</a>
     </div>
   </div>
@@ -193,70 +210,46 @@
   <h2 class="sec">Try the work</h2>
   <div class="secnote">every product below is live, free to try, built the same way →</div>
   <div class="products">
-    <a class="product" href="https://beware.dog" target="_blank" rel="noopener"><h4>beware.dog</h4><p>AI security for small business: the spoofed email, the cloned voice.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://moneymeta.fun" target="_blank" rel="noopener"><h4>moneymeta.fun</h4><p>The best money deck to play in life, ranked S to D from BLS data.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://sprite.email" target="_blank" rel="noopener"><h4>sprite.email</h4><p>One inbox for every Gmail you own.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://skill.supply" target="_blank" rel="noopener"><h4>skill.supply</h4><p>Writes your ideal JD, then scores real openings against it.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://darktalent.tech" target="_blank" rel="noopener"><h4>darktalent.tech</h4><p>Five scored candidates per job description, matched to one role.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://deathmoney.fyi" target="_blank" rel="noopener"><h4>deathmoney.fyi</h4><p>Your freedom number from real statements, not vibes.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://youchop.app" target="_blank" rel="noopener"><h4>youchop.app</h4><p>AI chapters and timestamps for any YouTube video.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://sellsniper.com" target="_blank" rel="noopener"><h4>sellsniper.com</h4><p>The ten communities where your exact buyers already gather.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://anchormarianas.com" target="_blank" rel="noopener"><h4>anchormarianas.com</h4><p>Free AI opportunity audit for SMBs, fee credits toward the build.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://summon.guide" target="_blank" rel="noopener"><h4>summon.guide</h4><p>Mentor-grade counsel on demand from history's greatest guides.</p><span>Try free ↗</span></a>
-    <a class="product" href="https://everybot.fun" target="_blank" rel="noopener"><h4>everybot.fun</h4><p>The reservation list for a household humanoid robot.</p><span>Try free ↗</span></a>
+    <a class="product" href="https://beware.dog" target="_blank" rel="noopener"><h3>beware.dog</h3><span class="product-copy">AI security for small business: the spoofed email, the cloned voice.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://moneymeta.fun" target="_blank" rel="noopener"><h3>moneymeta.fun</h3><span class="product-copy">The best money deck to play in life, ranked S to D from BLS data.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://sprite.email" target="_blank" rel="noopener"><h3>sprite.email</h3><span class="product-copy">One inbox for every Gmail you own.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://skill.supply" target="_blank" rel="noopener"><h3>skill.supply</h3><span class="product-copy">Writes your ideal JD, then scores real openings against it.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://darktalent.tech" target="_blank" rel="noopener"><h3>darktalent.tech</h3><span class="product-copy">Five scored candidates per job description, matched to one role.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://deathmoney.fyi" target="_blank" rel="noopener"><h3>deathmoney.fyi</h3><span class="product-copy">Your freedom number from real statements, not vibes.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://youchop.app" target="_blank" rel="noopener"><h3>youchop.app</h3><span class="product-copy">AI chapters and timestamps for any YouTube video.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://sellsniper.com" target="_blank" rel="noopener"><h3>sellsniper.com</h3><span class="product-copy">The ten communities where your exact buyers already gather.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://anchormarianas.com" target="_blank" rel="noopener"><h3>anchormarianas.com</h3><span class="product-copy">Free AI opportunity audit for SMBs, fee credits toward the build.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://summon.guide" target="_blank" rel="noopener"><h3>summon.guide</h3><span class="product-copy">Mentor-grade counsel on demand from history's greatest guides.</span><span>Try free ↗</span></a>
+    <a class="product" href="https://everybot.fun" target="_blank" rel="noopener"><h3>everybot.fun</h3><span class="product-copy">The reservation list for a household humanoid robot.</span><span>Try free ↗</span></a>
   </div>
 
   <div class="subscribe">
     <h2>One email when something new ships</h2>
     <p>No noise, no per-product spam. One list across everything I build, so you hear about a new lesson or product once, not never and not fifty times.</p>
     <form id="subForm">
-      <input type="email" id="subEmail" placeholder="you@company.com" required>
+      <label for="subEmail">Email address</label>
+      <input type="email" id="subEmail" name="email" autocomplete="email" placeholder="you@company.com" aria-describedby="subHelp subMsg" required>
       <button class="btn primary" type="submit">Subscribe</button>
     </form>
-    <div class="msg" id="subMsg"></div>
+    <p class="form-note" id="subHelp">By subscribing, you ask vercel.school to store your email for occasional updates about Adam's shipped work. The <a href="/privacy">privacy policy</a> explains the services involved and how to request removal.</p>
+    <div class="msg" id="subMsg" role="status" aria-live="polite"></div>
   </div>
 
   <div class="cta">
     <h2>Want this taught at your team?</h2>
-    <p>I onboard teams onto Vercel the way a forward-deployed engineer would — embedded, hands-on, shipping from day one. Or just come watch the classroom work in public.</p>
+    <p>Adam offers hands-on Vercel onboarding for teams that want to learn by shipping real work together. There is no public fixed price or paid plan for this service; use the contact page to describe your team and request a quote, or browse the classroom for free.</p>
     <div class="row">
-      <a class="btn primary" href="mailto:adamtpang@gmail.com?subject=vercel.school">Email the teacher</a>
+      <a class="btn primary" href="/contact">Contact Adam</a>
       <a class="btn ghost" href="https://x.com/adamtpang" target="_blank" rel="noopener">Follow along on X</a>
     </div>
   </div>
 
   <footer>
     <span>An independent fan project — not affiliated with Vercel Inc.</span>
-    <span>part of <a href="https://companyuniversity.vercel.app" target="_blank" rel="noopener">company.university</a></span>
+    <span><a href="/about">About</a> · <a href="/contact">Contact</a> · <a href="/privacy">Privacy</a> · part of <a href="https://companyuniversity.vercel.app" target="_blank" rel="noopener">company.university</a></span>
   </footer>
 </main>
-<script>
-  var f = document.getElementById('subForm');
-  if (f) {
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var email = document.getElementById('subEmail').value;
-      var msg = document.getElementById('subMsg');
-      msg.className = 'msg';
-      msg.textContent = 'Sending...';
-      fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      }).then(function (r) {
-        if (r.ok) {
-          msg.className = 'msg ok';
-          msg.textContent = "You're on the list.";
-          f.reset();
-        } else {
-          msg.textContent = 'Something broke. Try again?';
-        }
-      }).catch(function () {
-        msg.textContent = 'Something broke. Try again?';
-      });
-    });
-  }
-</script>
+<script defer src="/site.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 {
   "name": "vercel.school",
   "private": true,
+  "scripts": {
+    "test": "node scripts/verify-site.mjs",
+    "build": "node scripts/build-static.mjs"
+  },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
     "stripe": "^17.4.0"
