@@ -67,7 +67,7 @@ module.exports = async function handler(req, res) {
   const days = Math.min(90, Math.max(1, parseInt(req.query.days, 10) || 30));
   const where = `event = '$pageview' AND timestamp > now() - INTERVAL ${days} DAY`;
   try {
-    const [sites, refs, pages] = await Promise.all([
+    const [sites, refs, pages, daily] = await Promise.all([
       // One row per visitor per site first, then roll up. "Engaged" means the visitor
       // viewed two or more pages or arrived from another site: a rough human filter.
       hogql(`SELECT h, count() AS visitors, countIf(pv >= 2 OR ext = 1) AS engaged, countIf(srch = 1) AS search,
@@ -81,7 +81,12 @@ module.exports = async function handler(req, res) {
              WHERE ${where} AND ${REF} NOT IN ('', '$direct') AND position(${REF}, ${HOST}) = 0
              GROUP BY h, r ORDER BY v DESC LIMIT 2000`),
       hogql(`SELECT ${HOST} AS h, toString(properties.$pathname) AS p, count(DISTINCT distinct_id) AS v FROM events
-             WHERE ${where} GROUP BY h, p ORDER BY v DESC LIMIT 5000`)
+             WHERE ${where} GROUP BY h, p ORDER BY v DESC LIMIT 5000`),
+      // Fleet-wide visitors per day, for the trend line.
+      hogql(`SELECT toString(toDate(timestamp)) AS d, count(DISTINCT distinct_id) AS v,
+               uniqIf(distinct_id, match(${REF}, '${SEARCH}')) AS s FROM events
+             WHERE ${where} AND NOT match(${HOST}, 'localhost|127[.]0[.]0[.]1|vercel[.]app$')
+             GROUP BY d ORDER BY d LIMIT 100`)
     ]);
     const top = (rows, host, n) => rows.filter((r) => r[0] === host).slice(0, n).map((r) => ({ name: r[1], visitors: r[2] }));
     const seen = new Set();
@@ -97,7 +102,8 @@ module.exports = async function handler(req, res) {
       if (!seen.has(host)) out.push({ host, visitors: 0, engaged: 0, search: 0, pageviews: 0, visitors7d: 0, last: null,
         tracked: false, sources: [], pages: [], ...s });
     }
-    res.status(200).json({ days, generatedAt: new Date().toISOString(), scoresAt: scores.at, sites: out });
+    res.status(200).json({ days, generatedAt: new Date().toISOString(), scoresAt: scores.at,
+      daily: daily.map(([date, visitors, search]) => ({ date, visitors, search })), sites: out });
   } catch {
     res.status(502).json({ error: "could not load analytics" });
   }
