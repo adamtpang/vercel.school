@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Fleet admin · vercel.school</title>
+<style>
+  :root { --bg:#fff; --fg:#111; --mute:#666; --line:#e5e5e5; --soft:#f6f6f6; --good:#0a7f3f; --warn:#b26a00; --bad:#b3261e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0b0b0b; --fg:#f2f2f2; --mute:#999; --line:#262626; --soft:#151515; --good:#4ade80; --warn:#fbbf24; --bad:#f87171; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width:1200px; margin:0 auto; padding:24px 16px 64px; }
+  header { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; justify-content:space-between; margin-bottom:20px; }
+  h1 { font-size:20px; margin:0; }
+  .mute { color:var(--mute); }
+  button, select { font:inherit; color:var(--fg); background:var(--bg); border:1px solid var(--line); border-radius:6px; padding:6px 12px; cursor:pointer; }
+  button.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin-bottom:20px; }
+  .tile { border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; }
+  .wrap { overflow-x:auto; border:1px solid var(--line); border-radius:8px; }
+  table { border-collapse:collapse; width:100%; min-width:900px; }
+  th, td { padding:8px 10px; text-align:right; border-bottom:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  th:first-child, td:first-child, td.l, th.l { text-align:left; }
+  th { position:sticky; top:0; background:var(--soft); font-weight:600; cursor:pointer; user-select:none; }
+  tr:last-child td { border-bottom:0; }
+  td a { color:inherit; }
+  .good { color:var(--good); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  .center { max-width:420px; margin:18vh auto 0; text-align:center; }
+  code { background:var(--soft); padding:2px 6px; border-radius:4px; word-break:break-all; }
+  .note { margin-top:14px; font-size:13px; }
+</style>
+</head>
+<body>
+<main id="root"><p class="mute center">Loading…</p></main>
+<script src="/admin.js" defer></script>
+</body>
+</html>
